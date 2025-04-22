@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Summary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #003366;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #0055a5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      text-align: center;
+      padding: 14px;
+    }
+
+    th {
+      background-color: #003366;
+      color: white;
+    }
+
+    td {
+      border-top: 1px solid #eee;
+    }
+
+    .green {
+      background-color: #d4edda;
+      color: #155724;
+      font-weight: bold;
+    }
+
+    .amber {
+      background-color: #fff3cd;
+      color: #856404;
+      font-weight: bold;
+    }
+
+    .red {
+      background-color: #f8d7da;
+      color: #721c24;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Squad Health Summary</h1>
+
+  {% for team in summary %}
+    <h2>{{ team.team }}</h2>
+    <table>
+      <tr>
+        <th>Card</th>
+        <th>Green</th>
+        <th>Amber</th>
+        <th>Red</th>
+      </tr>
+      {% for card in team.cards %}
+        <tr>
+          <td>{{ card.card }}</td>
+          <td class="green">{{ card.votes.green }}</td>
+          <td class="amber">{{ card.votes.amber }}</td>
+          <td class="red">{{ card.votes.red }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endfor %}
+</body>
+</html>
