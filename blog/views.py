@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def voting_page(request):
+    return render(request, 'blog/voting.html')
