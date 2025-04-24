@@ -84,6 +84,7 @@
 <script>
     const slider = document.querySelector('.status-slider');
     const label = document.querySelector('.status-label');
+    const colorOptions = document.querySelector('status-slider');
     const states = ["Bad", "Improving", "Stable"]
 
     colorOptions.forEach(option => {
@@ -93,7 +94,7 @@
             
             const statusValue = option.getAttribute('data-status');
             slider.value = statusValue;
-            abel.textContent ="Status: " + states[statusValue];
+            label.textContent ="Status: " + states[statusValue];
     });
 
 });
