@@ -84,8 +84,20 @@
 <script>
     const slider = document.querySelector('.status-slider');
     const label = document.querySelector('.status-label');
-    const states = ["Bad", "Improving", "Stable"];
+    const states = ["Bad", "Improving", "Stable"]
 
+    colorOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            colorOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            
+            const statusValue = option.getAttribute('data-status');
+            slider.value = statusValue;
+            abel.textContent ="Status: " + states[statusValue];
+    });
+
+});
+        
     slider.addEventListener('input', () => {
         const value = parseInt(slider.value);
         label.textContent ="Status: " + states[value];
