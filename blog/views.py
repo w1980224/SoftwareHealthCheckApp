@@ -1,4 +1,4 @@
 from django.shortcuts render
 
 def voting_page(request):
-    return render(request, 'myblog/voting.html')
+    return render(request, 'blog/voting.html')
