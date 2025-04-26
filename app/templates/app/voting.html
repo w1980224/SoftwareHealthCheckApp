@@ -78,7 +78,7 @@
 </head>
 <body>
 
-<form method=" "POST" action="{% url 'vote' %}">
+<form method="POST" action="{% url 'vote' %}">
     {% csrf_token %}
     <div class="card">
         <div class="question-subtitle">Support</div>
@@ -87,7 +87,7 @@
     <div class="state-boxes">
         <button type="submit" name="state" value="worse" class="state-option state-option-red"></button>
         <button type="submit" name="state" value="improving" class="state-option state-option-yellow"></button>
-        <button type="submit" nsme="state" value="stable" class="state-option state-option-green"></button>
+        <button type="submit" name="state" value="stable" class="state-option state-option-green"></button>
     </div>
 
     <input type="range" min="0" max="2" value="1" class="status-slider">
@@ -98,7 +98,7 @@
   <script>
      const slider = document.querySelector('.status-slider');
      const label = document.querySelector('.status-label');
-     const states = ["Gxetting worse", "Improving", "Stable"];
+     const states = ["Getting worse", "Improving", "Stable"];
 
      slider.addEventListener('input', () => {
         const value = parseInt(slider.value);
