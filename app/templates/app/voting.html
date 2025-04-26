@@ -49,7 +49,7 @@
         border-radius: 50%;
         cursor: pointer;
         border: 2px solid transparent;
-        box-shadow: 0 2px 5px rgba;(0, 0, 0, 0.15);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         transition: transform 0.2 ease;
 
     
@@ -85,13 +85,17 @@
         <div class="state-label">Select one of these states:</div>
 
     <div class="state-boxes">
-        <button type="submit" name="state" value="worse" class="state-option state-option-red"></button>
-        <button type="submit" name="state" value="improving" class="state-option state-option-yellow"></button>
-        <button type="submit" name="state" value="stable" class="state-option state-option-green"></button>
+        <button type="submit" name="state" value="1" class="state-option state-option-red">Worse</button>
+        <button type="submit" name="state" value="2" class="state-option state-option-yellow">Improving</button>
+        <button type="submit" name="state" value="3" class="state-option state-option-green">Stable</button>
+
     </div>
 
     <input type="range" min="0" max="2" value="1" class="status-slider">
     <div class="status-label">Status: Stable</div>
+</div>
+
+<button type="submit" class="save-btn">Save</button>
 </div>
 </form>
 

@@ -1,20 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Vote
 
-def vote(request):
+def voting_page(request):
     if request.method == "POST":
-        selected_option = request.POST.get('vote_option')
+        selected_option = request.POST.get('state')
 
-        if selected_option:
+    if selected_option:
+        try:
+           vote_option = Vote.objects.get(id=selected_option)
+           vote_option.votes += 1
+           vote_option.save()
+           return redirect('/')
+        except Vote.DoesNotExist:
+            return render(request, 'voting.html', {'error': 'Invalid option selected.'})
 
-        vote_option = Vote.objects.get(id=selected_option)
-        vote_option.votes += 1
-        vote_option.save()
-        return redirect('/')
-
-    
 
     options = Vote.objects.all()
-
     return render(request, 'voting.html', {'options': options})
 
