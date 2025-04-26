@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 1 </title>
+    <style> 
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    .card {
+        background: #f0f0f0;
+        border-radius: 12px;
+        padding: 10rem;
+        width: 200px;
+        margin: auto;
+        box-shadow: 0 4px 10px rgba(8, 8, 8, 0.1);
+        text-align: center;
+    }
+
+    .question-subtitle {
+        font-size: 1.1rem;
+        color: #444;
+        margin-bottom: 1rem;
+
+    }
+
+    .state-label {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 0.5rem;
+    }
+
+    .state-boxes {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .state-option {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: 2px solid transparent;
+        box-shadow: 0 2px 5px rgba;(0, 0, 0, 0.15);
+        transition: transform 0.2 ease;
+
+    
+    }
+     
+    .state-option-red { background: #e74c3c; }
+    .state-option-yellow { background: #f1c40f; }
+    .state-option-green { background: #2ecc71; }
+    
+    .state-option.selected {
+        border-color: #000;
+
+    }
+    .status-slider {
+        width: 100%;
+        margin-top: 1rem;
+    
+    }
+
+    .status-label {
+        margin-top: 0.5rem;
+        font-weight: bold;
+        color: #444;
+    }
+    </style>
+</head>
+<body>
+
+<form method=" "POST" action="{% url 'vote' %}">
+    {% csrf_token %}
+    <div class="card">
+        <div class="question-subtitle">Support</div>
+        <div class="state-label">Select one of these states:</div>
+
+    <div class="state-boxes">
+        <button type="submit" name="state" value="worse" class="state-option state-option-red"></button>
+        <button type="submit" name="state" value="improving" class="state-option state-option-yellow"></button>
+        <button type="submit" nsme="state" value="stable" class="state-option state-option-green"></button>
+    </div>
+
+    <input type="range" min="0" max="2" value="1" class="status-slider">
+    <div class="status-label">Status: Stable</div>
+</div>
+</form>
+
+  <script>
+     const slider = document.querySelector('.status-slider');
+     const label = document.querySelector('.status-label');
+     const states = ["Gxetting worse", "Improving", "Stable"];
+
+     slider.addEventListener('input', () => {
+        const value = parseInt(slider.value);
+        label.textContent = "Status: " + states[value];
+     });
+    </script>
+</body>
+</html>
+
