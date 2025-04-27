@@ -1,0 +1,20 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pick a session</title>
+</head>
+<body>
+    <h1>Pick a Session</h1>
+    <ul>
+        {% for session in sessions %}
+        <li>
+            <a href="{$ url 'voting_page' team_id=team.id %}?session.id={{ session_id}}">
+                {{ team.name }}
+                </a>
+        </li>
+        {% empty %}
+        <li>No teams available</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
