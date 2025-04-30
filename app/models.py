@@ -31,13 +31,18 @@ class Vote(models.Model):
     session = models.CharField(max_length=100)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def _str__(self):
+    def __str__(self):
         return f"{self.user.username} - {self.card.name} - {self.vote}"
 
 class Session(models.Model):
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    team = models.ManyToManyField(Team, related_name='sessions')
     start_date = models.DateField()
     end_date = models.DateField()
 
-    def _str__(self):
-        return f"Session {self.id} for {self.team.name}"
+    def __str__(self):
+        return f"Session {self.id}"
+
+    def save(self, *args, **kwargs):
+        if self.team.count() !=4:
+            raise ValueError("A session must have exactly 4 teams")
+            super().save(*args, **kwarhs)

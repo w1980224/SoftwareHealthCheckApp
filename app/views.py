@@ -1,7 +1,23 @@
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from .models import Vote, Team, Card, Session
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
+from django.urls import reverse
+
+def session_list(request):
+    sessions = Session.objects.all()
+    teams = Team.objects.all()
+    return render(request, 'session_list.html', {'sessions': sessions,'teams' : teams})
+    
+    
+def team_list(request, session_id):
+    session = get_object_or_404(Session, id=session_id)
+    teams = session.teams.all()
+
+    print("Sessions:", sessions)
+    print("Teams:", teams)
+    return render(request, 'teams/team_list.html', {'session': session, 'teams': teams})
 
 def voting_page(request, team_id, session_id):
     try:
@@ -14,7 +30,7 @@ def voting_page(request, team_id, session_id):
     except Session.DoesNotExist:
         raise Http404("Session does not exist")
 
-    cards = Card.objects.all()
+    cards = Card.objects()
 
     if request.method == "POST":
         selected_card_id = request.POST.get('card_id')
@@ -42,15 +58,23 @@ def voting_page(request, team_id, session_id):
                     
                     )
             except Card.DoesNotExist:
-                return render(request, 'voting.html', {'team': team, 'cards:' cards, 'error': 'Invalid card selected'})
+                return render(request, 'voting.html', {'team': team, 'cards': cards, 'error': 'Invalid card selected'})
 
-            return redirect('voting.html', team_id=team.id)
 
+            return redirect('voting_page', team_id=team.id, session_id=session.id)
+       
 
     return render(request, 'voting.html', {
         'team': team, 
-        'session' session,
-        'cards': cards
+        'session': session,
+        'cards': cards,
     })
+
+
+
+
+
+
+
 
 
