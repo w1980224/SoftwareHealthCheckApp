@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Health Check Summary</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .logo {
+             position: absolute;
+             top: 20px;
+             right: 20px;
+             width: 80px;
+             height: 80px;
+             border-radius: 50%;
+             object-fit: cover;
+             background-color: white;
+             padding: 4px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #0d47a1;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin: 30px auto;
+            width: 80%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .chart-container {
+            margin-top: 20px;
+            height: 200px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="{% static 'logo.png' %}" alt="Sky Logo" class="logo">
+
+    <h1>Health Check Summary</h1>
+
+    {% for entry in card_data %}
+        <div class="card">
+            <h2>{{ entry.card.title }}</h2>
+            <p>{{ entry.card.description }}</p>
+            <p><strong>Total Votes:</strong> {{ entry.total_votes }}</p>
+            <p><strong>Improving:</strong> {{ entry.improving }}</p>
+
+            <div class="chart-container">
+                <canvas id="chart{{ forloop.counter }}"></canvas>
+            </div>
+
+            <script>
+                const ctx{{ forloop.counter }} = document.getElementById('chart{{ forloop.counter }}').getContext('2d');
+                new Chart(ctx{{ forloop.counter }}, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Good', 'In Between', 'Bad'],
+                        datasets: [{
+                            label: 'Votes',
+                            data: [{{ entry.green }}, {{ entry.amber }}, {{ entry.red }}],
+                            backgroundColor: ['#4caf50', '#ffc107', '#f44336'],
+                            borderRadius: 5,
+                            barThickness: 30
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+    {% empty %}
+        <p style="text-align: center; font-size: 18px;">No data available.</p>
+    {% endfor %}
+
+</body>
+</html>
