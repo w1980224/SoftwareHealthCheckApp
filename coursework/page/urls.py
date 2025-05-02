@@ -8,7 +8,6 @@ urlpatterns = [
     path('view_progress/', views.view_progress, name='view_progress'),
     path('view_cards/', views.view_cards, name='view_cards'),
 
-    # Optional direct access
     path('engineer/', views.engineer_landing, name='engineer'),
     path('team_leader/', views.team_leader_landing, name='team_leader'),
     path('department_leader/', views.department_leader_landing, name='department_leader'),
