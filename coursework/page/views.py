@@ -15,7 +15,7 @@ def view_progress(request):
 def view_cards(request):
     return HttpResponse("Cards page (to be implemented)")
 
-# Role-specific pages (if needed separately from `landing`)
+
 def engineer_landing(request):
     return render(request, 'page/engineer.html')
 
