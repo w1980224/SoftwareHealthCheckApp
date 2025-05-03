@@ -49,10 +49,48 @@
             font-size: 16px;
             color: #333;
         }
+
+        .navbar {
+            background-color: #0d47a1;
+            padding: 14px 20px;
+            position: relative;
+            top: 0;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background-color: #1565c0;
+        }
+
+        .nav-links .active {
+            background-color: #1976d2;
+        }
+
     </style>
 </head>
 <body>
-
+    <div class="navbar">
+        <div class="nav-links">
+            <a href="voting.html">Vote</a>
+            <a href="progress.html">Progress</a>
+            <a href="/summary/" class="active">Summary</a>
+        </div>
+    </div>
     <img src="{% static 'logo.png' %}" alt="Sky Logo" class="logo">
 
     <h1>Health Check Summary</h1>
@@ -62,7 +100,6 @@
             <h2>{{ entry.card.title }}</h2>
             <p>{{ entry.card.description }}</p>
             <p><strong>Total Votes:</strong> {{ entry.total_votes }}</p>
-            <p><strong>Improving:</strong> {{ entry.improving }}</p>
 
             <div class="chart-container">
                 <canvas id="chart{{ forloop.counter }}"></canvas>
@@ -73,7 +110,7 @@
                 new Chart(ctx{{ forloop.counter }}, {
                     type: 'bar',
                     data: {
-                        labels: ['Good', 'In Between', 'Bad'],
+                        labels: ['Stable', 'Improving', 'Bad'],
                         datasets: [{
                             label: 'Votes',
                             data: [{{ entry.green }}, {{ entry.amber }}, {{ entry.red }}],

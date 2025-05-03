@@ -20,8 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Your app
-    'KavyaFile.healthapp.apps.HealthappConfig',  # ✅ Use the config class explicitly
+    # my app
+    'KavyaFile.healthapp.apps.HealthappConfig',  # Use the config class explicitly
 ]
 
 MIDDLEWARE = [
@@ -39,7 +39,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'KavyaFile/healthapp/templates'],  # ✔️ Template directory
+        'DIRS': [BASE_DIR / 'KavyaFile/healthapp/templates'],  # Template directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
