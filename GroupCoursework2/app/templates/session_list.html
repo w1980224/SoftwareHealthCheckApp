@@ -1,91 +1,106 @@
+{% load static %}
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Pick a session</title>
 </head>
-<style> 
+<style>
     body {
         font-family: 'Segoe UI', sans-serif;
-        background: #f0f0f0;
         margin: 0;
         height: 100vh;
+        background: linear-gradient(to bottom, #87CEFA, #E0F7FA);
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
-.card {
-    background: #f0f0f0;
-    border-radius: 12px;
-    padding: 5rem;
-    width: 200px;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(8, 8, 8, 0.1);
-    text-align: center;
-}
-   .title {
-    font-size: 1.5rem;
-    color: #444;
-    margin-bottom: 1.5rem;
-   }
 
-   select {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-   }
+    .card {
+        background: #f0f0f0;
+        border-radius: 12px;
+        padding: 5rem;
+        width: 200px;
+        margin-top: 150px;
+        box-shadow: 0 4px 10px rgba(8, 8, 8, 0.1);
+        text-align: center;
+    }
 
-   option {
-    padding: 10px;
-   }
+    .title {
+        font-size: 1.5rem;
+        color: #444;
+        margin-bottom: 1.5rem;
+    }
 
-   .button {
-    background: #2ecc71;
-    color: #fff;
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-    display: inline-block;
+    select {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+    .button {
+        background: #2ecc71;
+        color: #fff;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s;
+        display: inline-block;
+        border: none;
     }
 
     .button:hover {
         background: #27ae60;
     }
 
-   ul {
-    list-style-type: none;
-    padding: 0;
-   }
+    nav {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: flex;
+    }
 
-   li {
-    margin-bottom: 1rem;
-   }
+    nav a {
+        margin-left: 15px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-   a {
-    text-decoration: none;
-    display: inline-block;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #3498db;
-    color: white;
-    font-size: 1.2rem;
-    text-align: center;
-    width: 100%;
-   }
+    nav a:hover {
+        text-decoration: underline;
+    }
 
-   a:hover {
-    background-color: #f0f2f4;
-   }
-   
-   </style>
+    header {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        right: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        height: 100px;
+        width: auto;
+    }
+</style>
 </head>
 <body>
+    <header>
+        <img src="{% static 'images/sky.png' %}" alt="Logo" class="logo">
+        <nav>
+            <a href="{% url 'registration:home' %}">Home Page</a>
+            <a href="{% url 'registration:logout' %}">Logout</a>        
+        </nav>
+    </header>
     <div class="card">
     <h1 class="title">Pick a Session</h1>
     

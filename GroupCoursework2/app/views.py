@@ -14,9 +14,9 @@ def session_list(request):
     
 def team_list(request, session_id):
     session = get_object_or_404(Session, id=session_id)
-    teams = session.teams.all()
+    teams = session.team.all()
 
-    print("Sessions:", sessions)
+    print("Sessions:", session)
     print("Teams:", teams)
     return render(request, 'teams/team_list.html', {'session': session, 'teams': teams})
 
